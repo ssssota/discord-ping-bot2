@@ -83,8 +83,13 @@ bot.on('command', async (command, msg) => {
       default: break;
     }
   } else {
-    const reply = data.get(`${getGuildId(msg)}.${msg.cleanContent}`);
-    if (reply) await msg.channel.send(reply);
+    const reply = data.get(`${getGuildId(msg)}.${msg.cleanContent}`) as string | undefined;
+    if (!reply) return;
+    if (reply.match(/^https?:\/\/(cdn|media)\.discordapp\.(com|net)\/attachments\/.*\/.*\.(jpg|png|gif|JPG|PNG|GIF|jpeg|JPEG|svg|SVG|bmp|BMP|heic|HEIC)$/)) {
+      await msg.channel.send({ files: [ reply ] });
+    } else {
+      await msg.channel.send(reply);
+    }
   }
 });
 bot.run();
