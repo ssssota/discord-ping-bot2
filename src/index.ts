@@ -56,6 +56,7 @@ const helpMessage = {
 };
 
 bot.on('command', async (command, msg) => {
+  if (msg.author.bot) return;
   if (typeof(command[0]) === 'string' && command[0].startsWith('/ping')) {
     switch (command[0]) {
       case commands.help.command:
@@ -73,7 +74,7 @@ bot.on('command', async (command, msg) => {
       default: break;
     }
   } else {
-    const reply = data.get(`${getGuildId(msg)}.${command}`);
+    const reply = data.get(`${getGuildId(msg)}.${msg.cleanContent}`);
     if (reply) msg.channel.send(reply);
   }
 });
