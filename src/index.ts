@@ -30,6 +30,12 @@ const commands = {
     command: '/ping:list',
     description: '登録されたメッセージの一覧を表示します。',
     usage: '/ping:list'
+  },
+  json: {
+    command: '/ping:json',
+    description: 'JSON形式で一覧を出力します。',
+    usage: '/ping:json',
+    private: true
   }
 };
 const helpMessage = {
@@ -71,6 +77,9 @@ bot.on('command', async (command, msg) => {
       case commands.list.command:
         await listCommands(command, msg);
         break;
+      case commands.json.command:
+        await jsonCommands(command, msg);
+        break;
       default: break;
     }
   } else {
@@ -110,6 +119,10 @@ async function listCommands(command: ShellQuote.ParseEntry[], msg: Discord.Messa
   const commandSet = data.get(getGuildId(msg));
   const messages = Object.keys(commandSet).join(', ');
   if (messages) await msg.channel.send(messages);
+}
+async function jsonCommands(command: ShellQuote.ParseEntry[], msg: Discord.Message) {
+  const commandSet = data.get(getGuildId(msg));
+  if (commandSet) await msg.channel.send('```'+JSON.stringify(commandSet)+'```');
 }
 
 function getGuildId(msg: Discord.Message) {
