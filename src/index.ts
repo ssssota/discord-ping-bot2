@@ -75,7 +75,7 @@ bot.on('command', async (command, msg) => {
     }
   } else {
     const reply = data.get(`${getGuildId(msg)}.${msg.cleanContent}`);
-    if (reply) msg.channel.send(reply);
+    if (reply) await msg.channel.send(reply);
   }
 });
 bot.run();
@@ -108,7 +108,8 @@ async function removeCommand(command: ShellQuote.ParseEntry[], msg: Discord.Mess
 }
 async function listCommands(command: ShellQuote.ParseEntry[], msg: Discord.Message) {
   const commandSet = data.get(getGuildId(msg));
-  await msg.channel.send(Object.keys(commandSet).join(', '));
+  const messages = Object.keys(commandSet).join(', ');
+  if (messages) await msg.channel.send(messages);
 }
 
 function getGuildId(msg: Discord.Message) {
