@@ -127,9 +127,17 @@ async function listCommands(command: ShellQuote.ParseEntry[], msg: Discord.Messa
 }
 async function jsonCommands(command: ShellQuote.ParseEntry[], msg: Discord.Message) {
   const commandSet = data.get(getGuildId(msg));
-  if (commandSet) await msg.channel.send('```'+JSON.stringify(commandSet)+'```');
+  if (!commandSet) return;
+  const json = JSON.stringify(commandSet);
+  const splitted = json.match(/.{1,1900}/g);
+  if (!splitted) return;
+  splitted.map(async (frag) => {
+    await msg.channel.send('```'+frag+'```');
+  });
 }
 
 function getGuildId(msg: Discord.Message) {
-  return (msg.channel instanceof Discord.TextChannel)? msg.channel.guild.id: msg.channel.id;
+  return (msg.channel instanceof Discord.TextChannel)
+    ? msg.channel.guild.id
+    : msg.channel.id;
 }
