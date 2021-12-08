@@ -3,10 +3,12 @@ services:
   bot:
     build: .
     command: node /app/index.js
+    restart: always
     env_file:
       - .env
   postgres:
     image: postgres:alpine
+    restart: always
     volumes:
       - type: volume
         source: db-data
