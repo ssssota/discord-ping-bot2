@@ -6,7 +6,7 @@ import { getRequestCandidates } from "./utils";
 
 export const launchBot = (token: string, logging = true) =>
   new Promise(async () => {
-    const log = logging ? createLogger("BOT") : (() => {});
+    const log = logging ? createLogger("BOT") : () => {};
     const client = new Client({
       intents: [Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS],
       partials: ["CHANNEL"],

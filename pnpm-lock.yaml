@@ -8,7 +8,7 @@ specifiers:
   discord-api-types: ^0.25.2
   discord.js: ^13.3.1
   dotenv: ^10.0.0
-  dprint: ^0.18.2
+  prettier: ^2.5.1
   typescript: ^4.5.2
 
 dependencies:
@@ -21,7 +21,7 @@ devDependencies:
   '@swc/cli': 0.1.52_@swc+core@1.2.118
   '@swc/core': 1.2.118
   dotenv: 10.0.0
-  dprint: 0.18.2
+  prettier: 2.5.1
   typescript: 4.5.2
 
 packages:
@@ -375,12 +375,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /dprint/0.18.2:
-    resolution: {integrity: sha512-uTx2JNxkBxPXEw0A1kvq484Z+2suJrro/8MJXAqJ/O2G85SjymSShZRKeauStXi4PZxYcOAPr/mGk/0tiNymxA==}
-    hasBin: true
-    requiresBuild: true
-    dev: true
-
   /event-target-shim/5.0.1:
     resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
     engines: {node: '>=6'}
@@ -508,6 +502,12 @@ packages:
   /picomatch/2.3.0:
     resolution: {integrity: sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==}
     engines: {node: '>=8.6'}
+    dev: true
+
+  /prettier/2.5.1:
+    resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /queue-microtask/1.2.3:

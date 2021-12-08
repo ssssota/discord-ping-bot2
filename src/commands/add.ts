@@ -13,13 +13,13 @@ export const addSubCommandBuilder = new SlashCommandSubcommandBuilder()
     opt
       .setName(reqOptionName)
       .setDescription("request keyword")
-      .setRequired(true)
+      .setRequired(true),
   )
   .addStringOption((opt) =>
     opt
       .setName(resOptionName)
       .setDescription("response message")
-      .setRequired(true)
+      .setRequired(true),
   );
 
 export const isAddCommand = (interaction: CommandInteraction): boolean =>

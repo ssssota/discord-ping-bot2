@@ -24,10 +24,9 @@ const command = new SlashCommandBuilder()
   .toJSON();
 
 export const registerCommands = (clientId: string, token: string) =>
-  new REST({ version: "9" }).setToken(token).put(
-    Routes.applicationCommands(clientId),
-    { body: [command] },
-  );
+  new REST({ version: "9" })
+    .setToken(token)
+    .put(Routes.applicationCommands(clientId), { body: [command] });
 
 export const isPingCommand = (
   interaction: Interaction,

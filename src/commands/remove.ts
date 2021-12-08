@@ -12,7 +12,7 @@ export const removeSubCommandBuilder = new SlashCommandSubcommandBuilder()
     opt
       .setName(reqOptionName)
       .setDescription("request keyword")
-      .setRequired(true)
+      .setRequired(true),
   );
 
 export const isRemoveCommand = (interaction: CommandInteraction): boolean =>

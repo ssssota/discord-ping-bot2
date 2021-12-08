@@ -19,8 +19,7 @@ export const helpCommandHandler = async (
       embeds: [
         new MessageEmbed({
           title: "ping usage",
-          description:
-            `For example, I will say "pong"(response message) when you say "ping"(request message). And, you can custom request/response pairs with the following commands.`,
+          description: `For example, I will say "pong"(response message) when you say "ping"(request message). And, you can custom request/response pairs with the following commands.`,
           color: "GREYPLE",
           fields: [
             addSubCommandBuilder,

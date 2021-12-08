@@ -1,7 +1,5 @@
 type Db = {
-  [guildId: string]: {
-    [req: string]: string | undefined;
-  } | undefined;
+  [guildId: string]: { [req: string]: string | undefined } | undefined;
 };
 
 const db: Db = {};
