@@ -1,0 +1,22 @@
+version: "3"
+services:
+  bot:
+    build: .
+    command: node /app/index.js
+    env_file:
+      - .env
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - type: volume
+        source: db-data
+        target: /var/lib/postgresql/data
+      - type: bind
+        source: ./initdb
+        target: /docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+volumes:
+  db-data:

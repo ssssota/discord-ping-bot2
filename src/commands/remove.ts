@@ -1,6 +1,6 @@
 import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
-import { del } from "../db";
+import { db } from "../db";
 
 export const name = "remove";
 export const description = "Remove request:response pair (e.g. ping:pong)";
@@ -22,6 +22,6 @@ export const removeCommandHandler = async (
   interaction: CommandInteraction,
 ): Promise<void> => {
   const req = interaction.options.getString(reqOptionName, true);
-  await del(interaction.guildId, req);
-  await interaction.reply("Successfully removed!");
+  await db.remove(interaction.guildId, req);
+  await interaction.reply(`Successfully removed! (${req})`);
 };

@@ -1,6 +1,6 @@
 import { Client, Intents } from "discord.js";
 import { commandHandler, isPingCommand } from "../commands";
-import { get } from "../db";
+import { db } from "../db";
 import { createLogger } from "./log";
 import { getRequestCandidates } from "./utils";
 
@@ -26,11 +26,12 @@ export const launchBot = (token: string, logging = true) =>
     });
     client.on("messageCreate", async (message) => {
       log(`message comming "${message.cleanContent}"`);
-      if (!message.inGuild() || message.guildId === null) return;
+      if (!message.inGuild() || message.guildId === null || message.author.bot)
+        return;
       const requestCandidates = getRequestCandidates(message.cleanContent);
       log("request candidates", requestCandidates);
       for (const requestCandidate of requestCandidates) {
-        const response = await get(message.guildId, requestCandidate);
+        const response = await db.get(message.guildId, requestCandidate);
         if (response) {
           log(`response found ${requestCandidate}:${response}`);
           await message.channel.send(response);

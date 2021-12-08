@@ -1,6 +1,6 @@
 import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
-import { add } from "../db";
+import { db } from "../db";
 
 export const name = "add";
 export const description = "Add request:response pair (e.g. ping:pong)";
@@ -30,6 +30,6 @@ export const addCommandHandler = async (
 ): Promise<void> => {
   const req = interaction.options.getString(reqOptionName, true);
   const res = interaction.options.getString(resOptionName, true);
-  await add(interaction.guildId, req, res);
-  await interaction.reply("Successfully added!");
+  await db.add(interaction.guildId, req, res);
+  await interaction.reply(`Successfully added! (${req})`);
 };

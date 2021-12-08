@@ -9,6 +9,11 @@ import {
   isHelpCommand,
 } from "./help";
 import {
+  isListCommand,
+  listCommandHandler,
+  listSubCommandBuilder,
+} from "./list";
+import {
   isRemoveCommand,
   removeCommandHandler,
   removeSubCommandBuilder,
@@ -21,6 +26,7 @@ const command = new SlashCommandBuilder()
   .addSubcommand(addSubCommandBuilder)
   .addSubcommand(removeSubCommandBuilder)
   .addSubcommand(helpSubCommandBuilder)
+  .addSubcommand(listSubCommandBuilder)
   .toJSON();
 
 export const registerCommands = (clientId: string, token: string) =>
@@ -37,4 +43,5 @@ export const commandHandler = async (interaction: CommandInteraction) => {
   if (isAddCommand(interaction)) await addCommandHandler(interaction);
   if (isRemoveCommand(interaction)) await removeCommandHandler(interaction);
   if (isHelpCommand(interaction)) await helpCommandHandler(interaction);
+  if (isListCommand(interaction)) await listCommandHandler(interaction);
 };
