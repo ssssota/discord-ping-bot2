@@ -1,10 +1,10 @@
 import { Client, Intents } from "discord.js";
-import { commandHandler, isPingCommand } from "../commands";
+import { commandHandler, isPingCommand, registerCommands } from "../commands";
 import { db } from "../db";
 import { createLogger } from "./log";
 import { getRequestCandidates } from "./utils";
 
-export const launchBot = (token: string, logging = true) =>
+export const launchBot = (clientId: string, token: string, logging = true) =>
   new Promise(async () => {
     const log = logging ? createLogger("BOT") : () => {};
     const client = new Client({
@@ -37,6 +37,10 @@ export const launchBot = (token: string, logging = true) =>
           await message.channel.send(response);
         }
       }
+    });
+
+    client.on("guildCreate", async () => {
+      await registerCommands(clientId, token);
     });
 
     log("starting...");
