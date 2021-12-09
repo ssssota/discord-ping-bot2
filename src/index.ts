@@ -9,7 +9,7 @@ const main = async () => {
   if (!token) throw new Error("Invalid discord token");
 
   await registerCommands(clientId, token);
-  await launchBot(clientId, token);
+  await launchBot(token);
 };
 
 main()
